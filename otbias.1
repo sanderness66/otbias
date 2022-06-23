@@ -1,0 +1,65 @@
+.TH bias 1 23-JUN-2022 "Kozmix Go"
+
+.SH NAME
+bias \- calculate anode current and dissipation using the output transformer method
+
+.SH SYNOPSIS
+.B bias
+Vcentre Vanode Rtransformer [Ianode]
+
+.SH DESCRIPTION
+You use
+.B bias
+to calculate anode current and dissipation of a power valve through
+measuring voltages on the output transformer. It takes three or four
+arguments:
+
+.SH OPTIONS
+.TP
+.B Vcentre
+Voltage from the output transformer centre tap to ground, in Volts.
+.TP
+.B Vanode
+Voltage from the anode to ground (this can usually be measured from
+the transformer as well as from the correct pin on the valve socket),
+in Volts.
+
+.P
+Both voltages are measured on a
+.I live
+amplifier that has had a couple of minutes to warm up and stabilise,
+and with the volume at 0.
+
+.TP
+.B Rtransformer
+DC resistance in Ohms between the centre tap and the anode, meansured
+with the amplifier turned
+.IR off .
+It is good practice to drain the filter capacitors before doing this.
+
+.P
+Optionally followed by:
+
+.TP
+.B Ianode
+desired anode current in Amperes (not mA). This will calculate the voltage drop between centre
+tap and anode corresponding to this anode current, for easy biasing.
+
+.SH EXAMPLE
+.EX
+$ bias 250 247.76 109 .031
+centre tap voltage            = 250 V
+anode voltage                 = 247.8 V
+output transformer resistance = 109 Ω
+desired anode current         = 31 mA
+
+voltage drop                  = 2.24 V
+anode current                 = 20.55 mA
+anode dissipation             = 5.092 W
+
+desired voltage drop          = 3.379 V
+.EE
+
+.SH AUTHOR
+svm
+
