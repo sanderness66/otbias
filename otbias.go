@@ -1,7 +1,7 @@
 // BIAS -- calculate anode current and dissipation from centre tap and
 //         anode voltages and output transformer resistance
 //
-// usage: bias Vcentretap Vanode Rtransformer
+// usage: bias Vcentretap Vanode Rtransformer [Panode]
 //
 // svm 23-JUN-2022
 //
@@ -28,9 +28,9 @@ func main() {
 	vanode, _ := strconv.ParseFloat(os.Args[2], 64)
 	rtrans, _ := strconv.ParseFloat(os.Args[3], 64)
 
-	var idesired float64
+	var pdesired float64
 	if len(os.Args) == 5 {
-		idesired, _ = strconv.ParseFloat(os.Args[4], 64)
+		pdesired, _ = strconv.ParseFloat(os.Args[4], 64)
 	}
 
 	vdrop := vcentre - vanode
@@ -40,14 +40,15 @@ func main() {
 	fmt.Printf("centre tap voltage            = %1.4g V\n", vcentre)
 	fmt.Printf("anode voltage                 = %1.4g V\n", vanode)
 	fmt.Printf("output transformer resistance = %1.4g Ω\n", rtrans)
-	if idesired > 0 {
-		fmt.Printf("desired anode current         = %1.4g mA\n", 1000*idesired)
+	if pdesired > 0 {
+		fmt.Printf("desired anode dissipation     = %1.4g W\n", pdesired)
 	}
 	fmt.Println()
 	fmt.Printf("voltage drop                  = %1.4g V\n", vdrop)
 	fmt.Printf("anode current                 = %1.4g mA\n", 1000*ianode)
 	fmt.Printf("anode dissipation             = %1.4g W\n", panode)
-	if idesired > 0 {
+	if pdesired > 0 {
+		idesired := pdesired / vanode
 		vdrop = idesired * rtrans
 		fmt.Println()
 		fmt.Printf("desired voltage drop          = %1.4g V\n", vdrop)

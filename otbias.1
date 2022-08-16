@@ -1,11 +1,11 @@
-.TH bias 1 23-JUN-2022 "Kozmix Go"
+.TH bias 1 16-AUG-2022 "Kozmix Go"
 
 .SH NAME
 bias \- calculate anode current and dissipation using the output transformer method
 
 .SH SYNOPSIS
 .B bias
-Vcentre Vanode Rtransformer [Ianode]
+Vcentre Vanode Rtransformer [Panode]
 
 .SH DESCRIPTION
 You use
@@ -42,23 +42,29 @@ doing this.
 Optionally followed by:
 
 .TP
-.B Ianode
-desired anode current in Amperes (not mA). This will calculate the voltage drop between centre
-tap and anode corresponding to this anode current, for easy biasing.
+.B Panode
+desired anode power dissipation in Watt. This will calculate the
+voltage drop between centre tap and anode corresponding to this anode
+current, for easy biasing.
+
+Note that this is somewhat meaningless since changing the bias to
+achieve this voltage drop is quite likely to change the anode voltage
+which in its turn changes this calculation.
+
 
 .SH EXAMPLE
 .EX
-$ bias 250 247.76 109 .031
+$ ./bias 250 247.76 109 10
 centre tap voltage            = 250 V
 anode voltage                 = 247.8 V
 output transformer resistance = 109 Ω
-desired anode current         = 31 mA
+desired anode dissipation     = 10 W
 
 voltage drop                  = 2.24 V
 anode current                 = 20.55 mA
 anode dissipation             = 5.092 W
 
-desired voltage drop          = 3.379 V
+desired voltage drop          = 4.399 V
 .EE
 
 .SH AUTHOR
