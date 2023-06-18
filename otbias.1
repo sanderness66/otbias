@@ -1,15 +1,15 @@
-.TH bias 1 16-AUG-2022 "Kozmix Go"
+.TH otbias 1 18-JUN-2023 "Kozmix Go"
 
 .SH NAME
-bias \- calculate anode current and dissipation using the output transformer method
+otbias \- calculate anode current and dissipation using the output transformer method
 
 .SH SYNOPSIS
-.B bias
+.B otbias
 Vcentre Vanode Rtransformer [Panode]
 
 .SH DESCRIPTION
 You use
-.B bias
+.B otbias
 to calculate anode current and dissipation of a power valve by
 measuring voltages on the output transformer. It takes three or four
 arguments:
@@ -54,7 +54,7 @@ which in its turn changes this calculation.
 
 .SH EXAMPLE
 .EX
-$ ./bias 250 247.76 109 10
+$ ./otbias 250 247.76 109 10
 centre tap voltage            = 250 V
 anode voltage                 = 247.8 V
 output transformer resistance = 109 Ω

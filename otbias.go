@@ -1,9 +1,9 @@
-// BIAS -- calculate anode current and dissipation from centre tap and
-//         anode voltages and output transformer resistance
+// OTBIAS -- calculate anode current and dissipation from centre tap and
+//           anode voltages and output transformer resistance
 //
-// usage: bias Vcentretap Vanode Rtransformer [Panode]
+// usage: otbias Vcentretap Vanode Rtransformer [Panode]
 //
-// svm 23-JUN-2022
+// svm 18-JUN-2023
 //
 // I = V/R         R = V/I         V = R*I
 // P = I*V         I = P/V         V = P/I
